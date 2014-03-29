@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="WindowsApplication1.My.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="WindowsApplication1.My.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup>
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0,Profile=Client" />
+    </startup>
+    <applicationSettings>
+        <WindowsApplication1.My.MySettings>
+            <setting name="Welcome" serializeAs="String">
+                <value>Thank you for using:
+RUSTNavGPS
+v0.1.0
+2014
+</value>
+            </setting>
+            <setting name="Crater" serializeAs="String">
+                <value>"4991" "-1635"</value>
+            </setting>
+            <setting name="BigRad" serializeAs="String">
+                <value>"5218" "-4800"</value>
+            </setting>
+            <setting name="SmallRad" serializeAs="String">
+                <value>"6120" "-3452"</value>
+            </setting>
+            <setting name="Factory" serializeAs="String">
+                <value>"6446" "-4667"</value>
+            </setting>
+            <setting name="Hangars" serializeAs="String">
+                <value>"6809" "-4304"</value>
+            </setting>
+            <setting name="Tanks" serializeAs="String">
+                <value>"6859" "-3865"</value>
+            </setting>
+            <setting name="Everust" serializeAs="String">
+                <value>"5005" "-3226"</value>
+            </setting>
+            <setting name="HackerValley" serializeAs="String">
+                <value>"5268" "-2700"</value>
+            </setting>
+            <setting name="CoastValley" serializeAs="String">
+                <value>"5501" "-5286"</value>
+            </setting>
+            <setting name="DeathPuddle" serializeAs="String">
+                <value>"5116" "-6132"</value>
+            </setting>
+        </WindowsApplication1.My.MySettings>
+    </applicationSettings>
+    <userSettings>
+        <WindowsApplication1.My.MySettings>
+            <setting name="Home" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+            <setting name="Waypoint1" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+            <setting name="Waypoint2" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+            <setting name="Waypoint3" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+            <setting name="Waypoint4" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+            <setting name="Waypoint5" serializeAs="String">
+                <value>"0000" "-0000"</value>
+            </setting>
+        </WindowsApplication1.My.MySettings>
+    </userSettings>
+</configuration>
