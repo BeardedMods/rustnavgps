@@ -1,0 +1,159 @@
+PLUGIN.Title = "RUSTNavGPS"
+PLUGIN.Description = "A GPS System For Rust"
+PLUGIN.Author = "Bearded"
+PLUGIN.Version = "0.1.0"
+
+function PLUGIN:Init()
+	self:AddChatCommand ( "gpsloc", self.gpsloc )
+	self:AddChatCommand ("gpscompass" , self.gpscompass)
+	self:AddChatCommand ("gps" , self.gps)
+	self:AddChatCommand("gpsnear", self.gpsnear)
+end
+
+function PLUGIN:gpsloc(netuser, cmd) --Get your current Location
+if (netuser.playerClient.hasLastKnownPosition) then
+		local coords = netuser.playerClient.lastKnownPosition;
+		rust.SendChatToUser( netuser, "Location", "X: " .. math.floor(coords.x) .. "   Y: " .. math.floor(coords.y) .. "   Z: " .. math.floor(coords.z) )
+end
+end	
+function PLUGIN:gpscompass(netuser, cmd, array) --Find out what direction you are facing
+if (netuser) then 
+        local controllable = netuser.playerClient.controllable
+        local char = controllable:GetComponent( "Character" )
+        local direction = (char.eyesYaw)%360.0
+        local multiplier = 10^(decimal or 0)
+	 local degree = math.floor(direction * multiplier + 0.5) / multiplier
+        local aztext = (" degrees ")
+	local cardinal = math.floor(direction * multiplier + 0.5) / multiplier
+        if (cardinal > 337.5) or (cardinal < 22.5) then
+                cardinal = "North"
+        elseif (cardinal >= 22.5) and (cardinal <= 67.5) then
+                cardinal = "Northeast"
+        elseif (cardinal > 67.5) and (cardinal < 112.5) then
+                cardinal = "East"
+        elseif (cardinal >= 112.5) and (cardinal <= 157.5) then
+                cardinal = "Southeast"
+        elseif (cardinal > 157.5) and (cardinal < 202.5) then
+                cardinal = "South"
+        elseif (cardinal >= 202.5) and (cardinal <= 247.5) then
+                cardinal = "Southwest"
+        elseif (cardinal > 247.5) and (cardinal < 292.5) then
+                cardinal = "West"
+        elseif (cardinal >= 292.5) and (cardinal <= 337.5) then
+                cardinal =  "Northwest"
+end
+        rust.SendChatToUser( netuser, "Facing "..(degree) ..aztext ..(cardinal)); 
+end
+end
+
+function PLUGIN:gps(netuser, cmd, array)-- Directs you to locations
+if (netuser.playerClient.lastKnownPosition) then
+	local coords = netuser.playerClient.lastKnownPosition
+	local x = math.floor(coords.x)
+	local z = math.floor(coords.z)
+	local xx = args[1]
+	local zz = args[2]
+	local n = (xx - x)
+	local o = (zz - z)
+	local angle = math.atan2(o, n) * 180 / math.pi
+	local ans = (angle - 90)%360 
+	local anstext = (" degrees.")
+	local nn = (x - xx)
+	local oo = (z - zz)
+	local dist = math.sqrt((nn*nn)+(oo*oo)) 
+	local mult = 10^(idp or 0)
+       local meter = math.floor(dist * mult + 0.5) / mult
+       local metertxt = ( "meters." )
+	 local location = (x == xx) and (z == zz) 
+       if location == true then 
+       rust.SendChatToUser(netuser, "You are at your destination!")
+       else if location == false then 
+	rust.SendChatToUser(netuser, "To get to point travel " ..ans ..anstext)
+	rust.SendChatToUser(netuser, "Estimated Distance " ..meter .. metertxt)
+	end
+	end
+	
+end
+end
+	
+-- near taken from: woolite64's compass mod, names adapted to new map orientation
+function PLUGIN:nearlocation(netuser, cmd, array)
+if (netuser) then
+	local playerCoords = netuser.playerClient.lastKnownPosition
+	local points = {
+		{ name = "Hacker Valley East", x = 5907, z = -1848 },
+		{ name = "Hacker Mountain East", x = 5268, z = -1961 },
+		{ name = "Hacker Valley Middle", x = 5268, z = -2700 },
+		{ name = "Hacker Mountain West", x = 4529, z = -2274 },
+		{ name = "Hacker Valley West", x = 4416, z = -2813 },
+		{ name = "Wasteland West", x = 3208, z = -4191 },
+		{ name = "Wasteland East", x = 6433, z = -2374 },
+		{ name = "Wasteland South", x = 4942, z = -2061 },
+		{ name = "Wasteland North", x = 3827, z = -5682 },
+		{ name = "Sweden", x = 3677, z = -4617 },
+		{ name = "Everust Mountain", x = 5005, z = -3226 },
+		{ name = "West Everust Mountain", x = 4316, z = -3439 },
+		{ name = "East Everust Mountain", x = 5907, z = -2700 },
+		{ name = "Metal Valley", x = 6825, z = -3038 },
+		{ name = "Metal Mountain", x = 7185, z = -3339 },
+		{ name = "Metal Hill", x = 5055, z = -5256 },
+		{ name = "Resource Mountain", x = 5268, z = -3665 },
+		{ name = "Resource Valley", x = 5531, z = -3552 },
+		{ name = "Resource Hole", x = 6942, z = -3502 },
+		{ name = "Resource Road", x = 6659, z = -3527 },
+		{ name = "Beach", x = 5494, z = -5770 },
+		{ name = "Beach Mountain", x = 5108, z = -5875 },
+		{ name = "Coast Valley", x = 5501, z = -5286 },
+		{ name = "Coast Mountain", x = 5750, z = -4677 },
+		{ name = "Coast Resource", x = 6120, z = -4930 },
+		{ name = "Secret Mountain", x = 6709, z = -4730 },
+		{ name = "Secret Valley", x = 7085, z = -4617 },
+		{ name = "Factory Radtown", x = 6446, z = -4667 },
+		{ name = "Small Radtown", x = 6120, z = -3452 },
+		{ name = "Big Radtown", x = 5218, z = -4800 },
+		{ name = "Hangar", x = 6809, z = -4304 },
+		{ name = "Tanks", x = 6859, z = -3865 },
+		{ name = "Civilian Forest", x = 6659, z = -4028 },
+		{ name = "Civilian Mountain", x = 6346, z = -4028 },
+		{ name = "Civilian Road", x = 6120, z = -4404 },
+		{ name = "Ballzack Mountain", x =4316, z = -5682 },
+		{ name = "Ballzack Valley", x = 4720, z = -5660 },
+		{ name = "Spain Valley", x = 4742, z = -5143 },
+		{ name = "Portugal Mountain", x = 4203, z = -4570 },
+		{ name = "Portugal", x = 4579, z = -4637 },
+		{ name = "Lone Tree Mountain", x = 4842, z = -4354 },
+		{ name = "Forest", x = 5368, z = -4434 },
+		{ name = "Rad-Town Valley", x = 5907, z = -3400 },
+		{ name = "Next Valley", x = 4955, z = -3900 },
+		{ name = "Silk Valley", x = 5674, z = -4048 },
+		{ name = "French Valley", x = 5995, z = -3978 },
+		{ name = "Ecko Valley", x = 7085, z = -3815 },
+		{ name = "Ecko Mountain", x = 7348, z = -4100 },
+		{ name = "Middle Mountain", x = 6346, z = -4028 },
+		{ name = "Zombie Hill", x = 6396, z = -3428 }
+	}
+
+	local min = -1
+	local minIndex = -1
+	for i = 1, #points do
+	   if (minIndex==-1) then
+			min = (points[i].x-playerCoords.x)^2+(points[i].z-playerCoords.z)^2
+			minIndex = i
+	   else
+			local dist = (points[i].x-playerCoords.x)^2+(points[i].z-playerCoords.z)^2
+			if (dist<min) then
+				min = dist
+				minIndex = i
+			end
+	   end
+	end
+
+	return points[minIndex].name
+end
+end
+function PLUGIN:gpsnear(netuser)
+if (netuser) then
+	rust.SendChatToUser(netuser, "You are near " ..self:nearlocation(netuser));
+	return
+end
+end
