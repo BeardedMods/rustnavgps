@@ -1,0 +1,162 @@
+Public Class Form1
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        TextBox1.Text = My.Settings.Welcome
+        TextBox2.Text = My.Settings.Home
+        TextBox4.Text = My.Settings.Waypoint1
+        TextBox5.Text = My.Settings.Waypoint2
+        TextBox6.Text = My.Settings.Waypoint3
+        TextBox7.Text = My.Settings.Waypoint4
+        TextBox8.Text = My.Settings.Waypoint5
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        My.Settings.Home = TextBox2.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        TextBox1.Text = My.Settings.Home
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        TextBox1.Text = "Sending Compass Command To Rust..."
+        AppActivate("rust")
+        SendKeys.SendWait("t")
+        System.Threading.Thread.Sleep(50)
+        SendKeys.SendWait("/gpscompass")
+        System.Threading.Thread.Sleep(150)
+        SendKeys.SendWait("{Enter}")
+    End Sub
+
+    
+    Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button16.Click
+        TextBox1.Text = "Sending Location Command To Rust..."
+        AppActivate("rust")
+        SendKeys.SendWait("t")
+        System.Threading.Thread.Sleep(50)
+        SendKeys.SendWait("/gpsloc")
+        System.Threading.Thread.Sleep(150)
+        SendKeys.SendWait("{Enter}")
+    End Sub
+
+    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
+        TextBox1.Text = "Sending Near Command To Rust..."
+        AppActivate("rust")
+        SendKeys.SendWait("t")
+        System.Threading.Thread.Sleep(50)
+        SendKeys.SendWait("/gpsnear")
+        System.Threading.Thread.Sleep(150)
+        SendKeys.SendWait("{Enter}")
+    End Sub
+
+    Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button15.Click
+        RustMap.Show()
+        Form3.Show()
+    End Sub
+
+    
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        My.Settings.Waypoint1 = TextBox4.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        My.Settings.Waypoint2 = TextBox5.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        My.Settings.Waypoint3 = TextBox6.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
+        My.Settings.Waypoint4 = TextBox7.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
+        My.Settings.Waypoint5 = TextBox8.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button10.Click
+        TextBox1.Text = My.Settings.Waypoint1
+    End Sub
+
+    Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
+        TextBox1.Text = My.Settings.Waypoint2
+    End Sub
+
+    Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
+        TextBox1.Text = My.Settings.Waypoint3
+    End Sub
+
+    Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
+        TextBox1.Text = My.Settings.Waypoint4
+    End Sub
+
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        TextBox1.Text = My.Settings.Waypoint5
+    End Sub
+
+    Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
+        Help.Show()
+    End Sub
+
+    
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        AppActivate("rust")
+        SendKeys.SendWait("t")
+        System.Threading.Thread.Sleep(50)
+        SendKeys.SendWait("/gps")
+        System.Threading.Thread.Sleep(150)
+        SendKeys.SendWait(" ")
+        System.Threading.Thread.Sleep(50)
+        SendKeys.SendWait(TextBox1.Text)
+        System.Threading.Thread.Sleep(150)
+        SendKeys.SendWait("{Enter}")
+    End Sub
+
+    Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
+        TextBox1.Text = My.Settings.Crater
+    End Sub
+
+    Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button19.Click
+        TextBox1.Text = My.Settings.BigRad
+    End Sub
+
+    Private Sub Button20_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button20.Click
+        TextBox1.Text = My.Settings.SmallRad
+    End Sub
+
+    Private Sub Button21_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button21.Click
+        TextBox1.Text = My.Settings.Factory
+    End Sub
+
+    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button25.Click
+        TextBox1.Text = My.Settings.Hangars
+    End Sub
+
+    Private Sub Button22_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button22.Click
+        TextBox1.Text = My.Settings.Tanks
+    End Sub
+
+    Private Sub Button29_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button29.Click
+        TextBox1.Text = My.Settings.Everust
+    End Sub
+
+    Private Sub Button23_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button23.Click
+        TextBox1.Text = My.Settings.HackerValley
+    End Sub
+
+    Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
+        TextBox1.Text = My.Settings.CoastValley
+    End Sub
+
+    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
+        TextBox1.Text = My.Settings.DeathPuddle
+    End Sub
+End Class
